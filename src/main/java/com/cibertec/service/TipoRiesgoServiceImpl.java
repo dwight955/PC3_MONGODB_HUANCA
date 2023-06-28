@@ -27,7 +27,7 @@ public class TipoRiesgoServiceImpl implements TipoRiesgoService {
 
 	@Override
 	public Optional<TipoRiesgo> buscaTipoRiesgo(int idTipoRiesgo) {
-		return repository.findById(idTipoRiesgo);
+		return repository.buscarPorId(idTipoRiesgo);
 	}
 
 	@Override

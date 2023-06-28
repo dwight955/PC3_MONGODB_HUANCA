@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import com.cibertec.service.TipoRiesgoService;
 
 @RestController
 @RequestMapping("/rest/TipoRiesgo")
+@CrossOrigin(origins = "http://localhost:4200")
 public class TipoRiesgoController {
 
 	@Autowired
@@ -29,6 +31,12 @@ public class TipoRiesgoController {
 		List<TipoRiesgo> lstSalida = service.listaTipoRiesgo();
 		return ResponseEntity.ok(lstSalida);
 	}
+	@GetMapping("/porId/{id}")
+	public ResponseEntity<?>  buscarPorID(@PathVariable Integer id){
+		Optional<TipoRiesgo> lstSalida = service.buscaTipoRiesgo(id);
+		return ResponseEntity.ok(lstSalida);
+	}
+	
 	@PostMapping
 	public ResponseEntity<?>  inserta(@RequestBody TipoRiesgo obj){
 		TipoRiesgo objSalida = service.insertaTipoRiesgo(obj);
